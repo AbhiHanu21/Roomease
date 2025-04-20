@@ -5,25 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RoomEase - Login</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="login-container">
-        <h2>RoomEase Login</h2>
-        <form action="#" method="POST">
-            <label for="email">Username</label>
-            <input type="Username" id="email" name="Username">
-            
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Login</button>
-            <p class="signup-link">Want to list property? <a href="https://abhihanu21.github.io/Roomease/listinglogin.html">Listing login</a></p>
-        </form>
-    </div>
-</body>
-</html>
-
-<style>
+    <style>
     body {
         font-family: Arial, sans-serif;
         display: flex;
@@ -73,3 +55,43 @@
         margin-top: 15px;
     }
 </style>
+</head>
+<body>
+    <div class="login-container">
+        <h2>RoomEase Login</h2>
+        <form id="loginForm">
+            <label for="email">Username</label>
+            <input type="Username" id="email" name="Username">
+            
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+            
+            <button type="submit">Login</button>
+            <p class="signup-link">Want to list property? <a href="https://abhihanu21.github.io/Roomease/listinglogin.html">Listing login</a></p>
+        </form>
+    </div>
+    <script>
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            const res = await fetch("/login", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ username, password })
+            });
+
+            const data = await res.json();
+            alert(data.message);
+        } catch (err) {
+            console.error("Login error:", err);
+            alert("Something went wrong.");
+        }
+    });
+</script>
+</body>
+</html>
+
+
