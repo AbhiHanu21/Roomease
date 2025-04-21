@@ -394,6 +394,17 @@
             let details = element.querySelector('.property-details');
             details.style.display = details.style.display === 'block' ? 'none' : 'block';
         }
+        const username = localStorage.getItem("username");
+
+  if (username) {
+    const avatar = document.getElementById("user-image");
+
+    // You can set a default profile picture or a user-specific one
+    avatar.src = `https://ui-avatars.com/api/?name=${username}&background=FFB800&color=000`;
+
+    // Optional: Set tooltip
+    avatar.title = `Logged in as ${username}`;
+  }
     
     </script>
     </section>
