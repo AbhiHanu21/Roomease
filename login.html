@@ -70,9 +70,9 @@
             <p class="signup-link">Want to list property? <a href="https://abhihanu21.github.io/Roomease/listinglogin.html">Listing login</a></p>
         </form>
     </div>
-    <script>
+   <script>
 document.getElementById("loginForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+    e.preventDefault(); // Prevent the default form submission
     const username = document.getElementById("username").value;
     const password = document.getElementById("password").value;
 
@@ -87,16 +87,18 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (response.ok) {
             alert(data.message);
-            window.location.href = "https://abhihanu21.github.io/Roomease/index(1).html"; // CHANGE THIS to your target page
+            // Redirect to dashboard or another page if needed
+            // window.location.href = "dashboard.html";
         } else {
             alert(data.message || "Login failed.");
-        }https://abhihanu21.github.io/Roomease/index(1).html
+        }
     } catch (error) {
         console.error("Error during login:", error);
         alert("An error occurred. Please try again later.");
     }
 });
 </script>
+
 
 </body>
 </html>
