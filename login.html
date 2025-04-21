@@ -61,7 +61,7 @@
         <h2>RoomEase Login</h2>
         <form id="loginForm">
             <label for="email">Username</label>
-            <input type="Username" id="email" name="Username">
+            <input type="Username" id="username" name="Username">
             
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
@@ -90,6 +90,21 @@
             alert("Something went wrong.");
         }
     });
+        fetch("https://roomease-backend-h3e0.onrender.com/login", {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    username: document.getElementById("username").value,
+    password: document.getElementById("password").value
+  })
+})
+.then(res => res.json())
+.then(data => {
+  alert(data.message);
+})
+.catch(err => {
+  alert("Login failed: " + err.message);
+});
 </script>
 </body>
 </html>
