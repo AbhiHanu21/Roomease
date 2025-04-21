@@ -87,6 +87,7 @@ document.getElementById("loginForm").addEventListener("submit", async function(e
 
         if (response.ok) {
             alert(data.message);
+            localStorage.setItem("username", username); // or image URL if you have one
             window.location.href = "https://abhihanu21.github.io/Roomease/index(1).html";
             // Redirect to dashboard or another page if needed
             // window.location.href = "dashboard.html";
