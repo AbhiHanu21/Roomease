@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RoomEase - Login</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
+  <meta charset="UTF-8">
+  <title>Login - RoomEase</title>
+  <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       background-color: #1a1a1a;
@@ -17,7 +15,7 @@
       margin: 0;
     }
 
-    .register-container {
+    .login-container {
       background-color: #222;
       padding: 30px 40px;
       border-radius: 10px;
@@ -26,12 +24,12 @@
       text-align: center;
     }
 
-    .register-container h2 {
+    .login-container h2 {
       color: #FFB800;
       margin-bottom: 20px;
     }
 
-    .register-container input {
+    .login-container input {
       width: 100%;
       padding: 10px;
       margin: 10px 0 20px;
@@ -41,7 +39,7 @@
       border-radius: 5px;
     }
 
-    .register-container button {
+    .login-container button {
       width: 100%;
       padding: 10px;
       background-color: #FFB800;
@@ -52,73 +50,64 @@
       cursor: pointer;
     }
 
-    .register-container button:hover {
+    .login-container button:hover {
       background-color: #e0a800;
     }
 
-    .login-link {
+    .signup-link {
       margin-top: 15px;
       display: block;
       color: #FFB800;
       text-decoration: none;
     }
 
-    .login-link:hover {
+    .signup-link:hover {
       text-decoration: underline;
     }
   </style>
 </head>
 <body>
-    <div class="login-container">
-        <h2>RoomEase Login</h2>
-        <form id="loginForm">
-            <label for="email">Username</label>
-            <input type="Username" id="username" name="Username">
-            
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required>
-            
-            <button type="submit">Login</button>
-            <p class="signup-link">Want to list property? <a href="https://abhihanu21.github.io/Roomease/listinglogin.html">Listing login</a></p>
-        </form>
-    </div>
-   <script>
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+  <div class="login-container">
+    <h2>Login to RoomEase</h2>
+    <form id="loginForm">
+      <input type="text" id="username" placeholder="Username" required>
+      <input type="password" id="password" placeholder="Password" required>
+      <button type="submit">Login</button>
+    </form>
+    <a href="register.html" class="signup-link">Don't have an account? Register</a>
+  </div>
 
-    try {
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+
+      try {
         const response = await fetch("https://roomease-backend-h3e0.onrender.com/login", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({ username, password })
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json"
+          },
+          body: JSON.stringify({ username, password })
         });
 
         const data = await response.json();
 
         if (response.ok) {
-            // Save the user info if needed
-            localStorage.setItem("username", username);
-
-            // Redirect directly to the desired page (no alert)
-            window.location.href = "https://abhihanu21.github.io/Roomease/index(1).html"; // change to your actual target page
+          localStorage.setItem("username", username);
+          window.location.href = "home.html"; // Redirect after successful login
         } else {
-            alert(data.message || "Login failed.");
+          alert(data.message || "Login failed.");
         }
-    } catch (error) {
+      } catch (error) {
         console.error("Login error:", error);
         alert("Something went wrong.");
-    }
-});
-</script>
-
-
+      }
+    });
+  </script>
 
 </body>
 </html>
-
-
